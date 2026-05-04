@@ -1,16 +1,48 @@
 #include <iostream>
+#include "SinglyLinkedList.h"
+#include "DoublyLinkedList.h"
 
-// TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 int main() {
-    // TIP Press <shortcut actionId="RenameElement"/> when your caret is at the <b>lang</b> variable name to see how CLion can help you rename it.
-    auto lang = "C++";
-    std::cout << "Hello and welcome to " << lang << "!\n";
+    try {
+        SinglyLinkedList<int> singleList;
 
-    for (int i = 1; i <= 5; i++) {
-        // TIP Press <shortcut actionId="Debug"/> to start debugging your code. We have set one <icon src="AllIcons.Debugger.Db_set_breakpoint"/> breakpoint for you, but you can always add more by pressing <shortcut actionId="ToggleLineBreakpoint"/>.
-        std::cout << "i = " << i << std::endl;
+        singleList.push_back(10);
+        singleList.push_back(20);
+        singleList.push_front(5);
+        singleList.insert(1, 7);
+
+        std::cout << "Singly linked list: " << singleList << std::endl;
+        std::cout << "Size: " << singleList.size() << std::endl;
+        std::cout << "Element at index 2: " << singleList.at(2) << std::endl;
+        std::cout << "Index of 20: " << singleList.find(20) << std::endl;
+
+        singleList.remove(1);
+        singleList.pop_back();
+
+        std::cout << "After removing elements: " << singleList << std::endl;
+
+        std::cout << "------------------------" << std::endl;
+
+        DoublyLinkedList<std::string> doubleList;
+
+        doubleList.push_back("One");
+        doubleList.push_back("Two");
+        doubleList.push_front("Zero");
+        doubleList.insert(2, "Middle");
+
+        std::cout << "Doubly linked list: " << doubleList << std::endl;
+        std::cout << "Size: " << doubleList.size() << std::endl;
+        std::cout << "Element at index 1: " << doubleList.at(1) << std::endl;
+        std::cout << "Index of Two: " << doubleList.find("Two") << std::endl;
+
+        doubleList.remove(2);
+        doubleList.pop_front();
+
+        std::cout << "After removing elements: " << doubleList << std::endl;
+
+    } catch (const std::exception& error) {
+        std::cout << "Error: " << error.what() << std::endl;
     }
 
     return 0;
-    // TIP See CLion help at <a href="https://www.jetbrains.com/help/clion/">jetbrains.com/help/clion/</a>. Also, you can try interactive lessons for CLion by selecting 'Help | Learn IDE Features' from the main menu.
 }

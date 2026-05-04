@@ -84,27 +84,27 @@ public:
         return current->data;
     }
 
-    void insert(size_t index, const T& value) {
-        if (index > listSize) {
-            throw std::out_of_range("Index out of range");
+        void insert(size_t index, const T& value) {
+            if (index > listSize) {
+                throw std::out_of_range("Index out of range");
+            }
+
+            if (index == 0) {
+                push_front(value);
+                return;
+            }
+
+            auto newNode = std::make_shared<Node<T>>(value);
+            auto current = head;
+
+            for (size_t i = 0; i < index - 1; i++) {
+                current = current->next;
+            }
+
+            newNode->next = current->next;
+            current->next = newNode;
+            listSize++;
         }
-
-        if (index == 0) {
-            push_front(value);
-            return;
-        }
-
-        auto newNode = std::make_shared<Node<T>>(value);
-        auto current = head;
-
-        for (size_t i = 0; i < index - 1; i++) {
-            current = current->next;
-        }
-
-        newNode->next = current->next;
-        current->next = newNode;
-        listSize++;
-    }
 
     void remove(size_t index) {
         if (index >= listSize) {
